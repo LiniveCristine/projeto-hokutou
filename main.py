@@ -1,6 +1,6 @@
-from services.user_services import inset_client 
-
-
+from services.user_services import inset_client, login 
+from datetime import datetime
+import getpass
 
 
 while True:
@@ -19,15 +19,39 @@ while True:
 
         if op == 1:
             nome = input("\nDigite seu user: ")
-            senha= input("Digite sua senha: ")
-            data_nsc = input("Digite sua data de nascimento (AAAA-DD-MM): ")
+            senha= getpass.getpass("Digite sua senha: ")
+            data_input = input("Digite sua data de nascimento (AAAA-DD-MM): ")
 
-            inset_client(nome, senha, data_nsc)
+            if(nome and senha and data_input):
+                try:
+                    data_valida = datetime.strptime(data_input, "%Y-%d-%m")
+                    data_nsc = data_valida.strftime("%Y-%m-%d")
+                    inset_client(nome, senha, data_nsc)
+                
+                except ValueError:
+                    print("\n*** Erro: Formato de data inválido! Use o padrão AAAA-DD-MM. ***\n")
+            
+            else:
+                print("\n*** Valores inválidos ***\n")
 
 
         elif op == 2:
-            pass
-    
+            nome = input("\nDigite seu user: ")
+            senha= getpass.getpass("Digite sua senha: ")
+
+            if(nome and senha):
+                user_validado = login(nome, senha)
+
+
+                if(user_validado):
+                    print(f"\n\t*** Bem vindo {user_validado[0]} ***\n")
+
+                else:
+                    print("\n*** Usuário ou senha invalidos ***\n")
+
+            else:
+                print("\n*** Valores inválidos ***\n")
+
         else:
             break
 
