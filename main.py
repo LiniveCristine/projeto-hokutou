@@ -1,5 +1,5 @@
 from services.user_services import inset_client, login 
-from services.products_services import listar_produtos
+from layouts.menu_inicial import menu_inicial
 from datetime import datetime
 import getpass
 
@@ -46,9 +46,12 @@ while True:
                 user_validado = login(nome, senha)
 
 
+                #while dentro do while?
+
                 if(user_validado):
                     print(f"\n\t*** Bem vindo {user_validado[0]} ***\n")
-                    listar_produtos()
+                    menu_inicial()
+
 
                 else:
                     print("\n*** Usuário ou senha invalidos ***\n")
