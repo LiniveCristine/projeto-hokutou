@@ -36,3 +36,5 @@ def login(nome:str, senha:str):
     finally:
         cursor.close()
         con.close()
+
+

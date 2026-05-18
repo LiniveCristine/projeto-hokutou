@@ -1,4 +1,5 @@
 from services.user_services import inset_client, login 
+from services.products_services import listar_produtos
 from datetime import datetime
 import getpass
 
@@ -18,6 +19,7 @@ while True:
         op =int(input("* Digite a opção: "))
 
         if op == 1:
+            print("\n\t*** CADASTRO ***\n")
             nome = input("\nDigite seu user: ")
             senha= getpass.getpass("Digite sua senha: ")
             data_input = input("Digite sua data de nascimento (AAAA-DD-MM): ")
@@ -36,6 +38,7 @@ while True:
 
 
         elif op == 2:
+            print("\n\t*** LOGIN ***\n")
             nome = input("\nDigite seu user: ")
             senha= getpass.getpass("Digite sua senha: ")
 
@@ -45,6 +48,7 @@ while True:
 
                 if(user_validado):
                     print(f"\n\t*** Bem vindo {user_validado[0]} ***\n")
+                    listar_produtos()
 
                 else:
                     print("\n*** Usuário ou senha invalidos ***\n")
