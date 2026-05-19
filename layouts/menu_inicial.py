@@ -10,27 +10,30 @@ def menu_inicial():
           4- Sair\n
 
     ''')
+    while True:         #While adicionado
 
-    try:
+        try:
 
-        op =int(input("* Digite a opção: "))
+            op =int(input("* Digite a opção: "))
 
-        if op == 1:
-            listar_produtos()
-            
+            if op == 1:
+                listar_produtos()
+                
 
 
-        elif op == 2:
-            print("\n\t*** CARRINHO ***\n")
-            pass
+            elif op == 2:
+                print("\n\t*** CARRINHO ***\n")
+                pass
 
-        elif op == 3:
-            print("\n\t*** ENDEREÇO CADASTRADO ***\n")
-            pass
+            elif op == 3:
+                print("\n\t*** ENDEREÇO CADASTRADO ***\n")
+                pass
+            elif op == 4:                   #opção 4 pra sair colocada, meio que serve como logout(?)
+                print("SAINDO DO SISTEMA!")
+                break
+            else:
+                #como fazer logout do usuário??
+                pass
 
-        else:
-            #como fazer logout do usuário??
-            pass
-
-    except ValueError:
-        print("\n*** Opção invalida!! ***\n")
+        except ValueError:
+            print("\n*** Opção invalida!! ***\n")
