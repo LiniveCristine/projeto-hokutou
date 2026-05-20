@@ -1,6 +1,6 @@
 from services.products_services import listar_produtos
 
-def menu_inicial():
+def menu_inicial(id_user:int):
     while True:         #While adicionado
 
         try:
@@ -17,17 +17,19 @@ def menu_inicial():
             op =int(input("* Digite a opção: "))
 
             if op == 1:
-                listar_produtos()
+                listar_produtos(id_user)
                 
 
             elif op == 2:
                 print("\n\t*** CARRINHO ***\n")
+                #chamar a lista carrinho e fazer um for
                 pass
+
 
             elif op == 3:
                 print("\n\t*** ENDEREÇO CADASTRADO ***\n")
                 pass
-            
+
             elif op == 4:                   #opção 4 pra sair colocada, meio que serve como logout(?)
                 print("SAINDO DO SISTEMA!")
                 break

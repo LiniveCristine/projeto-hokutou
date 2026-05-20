@@ -50,7 +50,7 @@ while True:
 
                 if(user_validado):
                     print(f"\n\t*** Bem vindo {user_validado[0]} ***\n")
-                    menu_inicial()
+                    menu_inicial(user_validado[2])
 
 
                 else:

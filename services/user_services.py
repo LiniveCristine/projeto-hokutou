@@ -25,7 +25,7 @@ def login(nome:str, senha:str):
         con= criar_conexao()
         cursor = con.cursor()
 
-        sql = "SELECT nome, senha FROM cliente WHERE nome=%s AND senha=%s"
+        sql = "SELECT nome, senha, id_cliente FROM cliente WHERE nome=%s AND senha=%s"
         cursor.execute(sql,(nome,senha))
         user = cursor.fetchone()
         return user
