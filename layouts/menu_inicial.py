@@ -1,14 +1,15 @@
-from services.products_services import listar_produtos
+from services.products_services import obter_todos_produtos
+from layouts.tela_compras import exibir_tela_compras
 
 def menu_inicial(id_user:int):
-    while True:         #While adicionado
+    while True:         
 
         try:
             print('''
 
             \t*** MENU INICIAL ***\n
             1- Listar Produtos\n
-            2- Carrinho\n
+            2- Minhas compras\n
             3- Endereço Cadastrado\n
             4- Sair\n
 
@@ -17,7 +18,7 @@ def menu_inicial(id_user:int):
             op =int(input("* Digite a opção: "))
 
             if op == 1:
-                listar_produtos(id_user)
+                exibir_tela_compras(id_user)
                 
 
             elif op == 2:

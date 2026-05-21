@@ -46,11 +46,12 @@ while True:
                 user_validado = login(nome, senha)
 
 
-                #while dentro do while?
-
                 if(user_validado):
-                    print(f"\n\t*** Bem vindo {user_validado[0]} ***\n")
-                    menu_inicial(user_validado[2])
+                    nome_cliente = user_validado[0]
+                    id_cliente = user_validado[2]
+                    
+                    print(f"\n\t*** Bem vindo {nome_cliente} ***\n")
+                    menu_inicial(id_cliente)
 
 
                 else:
