@@ -32,7 +32,7 @@ while True:
                 
                 except ValueError:
                     print("\n*** Erro: Formato de data inválido! Use o padrão AAAA-DD-MM. ***\n")
-            
+        #cadastrar endereco nesse inicio tbm (?)
             else:
                 print("\n*** Valores inválidos ***\n")
 
