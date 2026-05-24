@@ -93,4 +93,32 @@ def cadastrar_endereco(id_cliente: int, rua: str, cidade: str, estado: str, cep:
             cursor.close()
         if con:
             con.close()
+
+def buscar_carrinho(id_cliente: int):
+    con = None
+    cursor = None
+    try:
+        con = criar_conexao()
+        cursor = con.cursor()
+        
+        sql = """
+            SELECT p.nome, iv.quantidade, iv.valor_unitario, c.data_compra
+            FROM compras c
+            JOIN item_venda iv ON c.id_compra = iv.id_compra
+            JOIN produtos p ON iv.id_produto = p.id_produto
+            WHERE c.id_cliente = %s
+            ORDER BY c.data_compra DESC
+            """
+        cursor.execute(sql, (id_cliente,))
+        
+        itens = cursor.fetchall() # retorna uma lista de tuplas com todos os produtos
+        return itens
+        
+    except Exception as e:
+        print(f"\nErro ao buscar o carrinho: {e}")
+        return [] # retorna uma lista vazia para não quebrar o for depois
+
+    finally:
+        if cursor: cursor.close()
+        if con: con.close()
     

@@ -1,6 +1,6 @@
 from services.products_services import obter_todos_produtos
 from layouts.tela_compras import exibir_tela_compras
-from services.user_services import buscar_endereco, cadastrar_endereco
+from services.user_services import buscar_endereco, cadastrar_endereco, buscar_carrinho
 
 def menu_inicial(id_user:int):
     while True:         
@@ -23,11 +23,36 @@ def menu_inicial(id_user:int):
                 
 
             elif op == 2:
-                print("\n\t*** CARRINHO ***\n")
-                #chamar a lista carrinho e fazer um for
-                pass
+                print("\n\t*** MINHAS COMPRAS ***\n")
+                
+             
+                itens_comprados = buscar_carrinho(id_user)
 
+                if not itens_comprados:
+                    print("**Carrinho vazio!.")
+                else:
+                    total_gasto = 0
+                                    
+                    print(f"{'DATA':<12} | {'PRODUTO':<20} | {'QTD':<5} | {'PREÇO':<10} | {'SUBTOTAL'}")
+                    print("-" * 65)
+                                      
+                    for item in itens_comprados:
 
+                        nome, quantidade, valor_unitario, data_compra = item 
+                        
+                        subtotal = quantidade * valor_unitario
+                        total_gasto += subtotal
+                        
+                        data_str = str(data_compra)
+                        
+                        print(f"{data_str:<12} | {nome:<20} | {quantidade:<5} | R$ {valor_unitario:<7.2f} | R$ {subtotal:.2f}")
+                    
+                    print("-" * 65)
+                    print(f"TOTAL: R$ {total_gasto:.2f}\n")
+                    
+                # pra poder ler antes de sair do carrinho
+                input("Pressione ENTER para voltar ao menu...")
+                    
             elif op == 3:
                 print("\n\t*** ENDEREÇO CADASTRADO ***\n")
 
@@ -59,8 +84,6 @@ def menu_inicial(id_user:int):
 
                         cadastrar_endereco(id_user, rua,cidade,estado,cep)
                 
-
-
                 pass
 
             elif op == 4:                   #opção 4 pra sair colocada, meio que serve como logout(?)
