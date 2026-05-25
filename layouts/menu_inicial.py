@@ -67,7 +67,7 @@ def menu_inicial(id_user:int):
                     print(f"Estado: {estado}")
                     
                     # Opcional: Perguntar se quer atualizar
-                    atualizar = input("Deseja atualizar este endereço? (S/N): ").strip().upper()
+                    atualizar = input("Deseja voltar ao menu? (S/N): ").strip().upper()
                     if atualizar != 'S':
                         continue
                 else:
@@ -86,11 +86,11 @@ def menu_inicial(id_user:int):
                 
                 pass
 
-            elif op == 4:                   #opção 4 pra sair colocada, meio que serve como logout(?)
+            elif op == 4:                  
                 print("SAINDO DO SISTEMA!")
                 break
             else:
-                #como fazer logout do usuário??
+               
                 pass
 
         except ValueError:
