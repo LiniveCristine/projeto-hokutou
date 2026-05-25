@@ -1,4 +1,5 @@
 from config.db import criar_conexao
+from config.bcrypt import checar_password, criotpgrafar
 
 
 def inset_client(nome:str, senha:str, data_nsc: str):
@@ -8,6 +9,8 @@ def inset_client(nome:str, senha:str, data_nsc: str):
     try:
         con= criar_conexao()
         cursor = con.cursor()
+
+        senha = criotpgrafar(senha)
 
         sql = "INSERT INTO cliente(nome,senha, data_nsc) VALUES(%s,%s,%s)"
         cursor.execute(sql, (nome, senha, data_nsc))
@@ -33,10 +36,17 @@ def login(nome:str, senha:str):
         con= criar_conexao()
         cursor = con.cursor()
 
-        sql = "SELECT nome, senha, id_cliente FROM cliente WHERE nome=%s AND senha=%s"
-        cursor.execute(sql,(nome,senha))
+        sql = "SELECT nome, senha, id_cliente FROM cliente WHERE nome=%s"
+        cursor.execute(sql,(nome,))
         user = cursor.fetchone()
-        return user
+
+        hash = bytes(user[1])
+
+
+        if user and checar_password(senha, hash):
+            return user
+        
+        return None
 
     except Exception as e:
         print(f"\nErro no login: {e}")
