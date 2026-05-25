@@ -1,4 +1,4 @@
-from services.products_services import obter_todos_produtos
+#from services.products_services import obter_todos_produtos
 from layouts.tela_compras import exibir_tela_compras
 from services.user_services import buscar_endereco, cadastrar_endereco, buscar_carrinho
 
