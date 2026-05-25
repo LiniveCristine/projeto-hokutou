@@ -112,12 +112,12 @@ def buscar_carrinho(id_cliente: int):
         cursor = con.cursor()
         
         sql = """
-            SELECT p.nome, iv.quantidade, iv.preco_unitario, c.data_compra
+            SELECT p.nome, iv.quantidade, iv.preco_unitario, c.data_venda
             FROM compra c
             JOIN itens_venda iv ON c.id_venda = iv.id_venda
-            JOIN produtos p ON iv.id_produto = p.id_produto
+            JOIN produtos p ON iv.id_produto = p.id_produdo
             WHERE c.id_cliente = %s
-            ORDER BY c.data_compra DESC
+            ORDER BY c.data_venda DESC
             """
         cursor.execute(sql, (id_cliente,))
         
